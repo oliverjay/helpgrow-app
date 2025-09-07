@@ -21,13 +21,15 @@
 	let showSuccess = $state(false);
 	let phoneNumber = $state('');
 	let fullName = $state('');
+	let profileLoaded = $state(false);
 
-	// Update form values when profile data changes
+	// Update form values when profile data changes - but only once
 	$effect(() => {
-		console.log('Profile effect running:', { profile });
-		if (profile) {
+		console.log('Profile effect running:', { profile, profileLoaded });
+		if (profile && !profileLoaded) {
 			phoneNumber = profile.phone || '';
 			fullName = profile.full_name || '';
+			profileLoaded = true;
 			console.log('Profile data loaded:', {
 				profile,
 				phoneNumber,
