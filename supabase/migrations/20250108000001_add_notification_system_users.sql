@@ -2,8 +2,7 @@
 ALTER TABLE users ADD COLUMN IF NOT EXISTS notification_preferences JSONB DEFAULT '{
   "email_notifications": true,
   "sms_notifications": false,
-  "milestone_notifications": true,
-  "weekly_digest": false
+  "milestone_notifications": true
 }'::jsonb;
 
 -- Add phone column to users table if it doesn't exist
@@ -13,7 +12,7 @@ ALTER TABLE users ADD COLUMN IF NOT EXISTS phone TEXT;
 CREATE TABLE IF NOT EXISTS notification_logs (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
-  notification_type TEXT NOT NULL CHECK (notification_type IN ('milestone_1', 'milestone_2', 'milestone_3', 'weekly_digest')),
+  notification_type TEXT NOT NULL CHECK (notification_type IN ('milestone_1', 'milestone_2', 'milestone_3')),
   channel TEXT NOT NULL CHECK (channel IN ('email', 'sms')),
   status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'sent', 'failed', 'delivered')),
   response_count INTEGER NOT NULL,

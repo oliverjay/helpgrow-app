@@ -12,14 +12,31 @@
 	let preferences = $derived(profile?.notification_preferences || {
 		email_notifications: true,
 		sms_notifications: false,
-		milestone_notifications: true,
-		weekly_digest: false
+		milestone_notifications: true
 	});
 
 	let isUpdatingNotifications = $state(false);
 	let isUpdatingPhone = $state(false);
+	let isUpdatingProfile = $state(false);
 	let showSuccess = $state(false);
 	let phoneNumber = $state(profile?.phone || '');
+	let fullName = $state(profile?.full_name || '');
+
+	// Update form values when profile data changes
+	$effect(() => {
+		if (profile) {
+			phoneNumber = profile.phone || '';
+			fullName = profile.full_name || '';
+		}
+	});
+
+	// Auto-toggle SMS notifications when phone number is provided/removed
+	$effect(() => {
+		if (phoneNumber && phoneNumber.trim() !== '' && !preferences.sms_notifications) {
+			// Auto-enable SMS notifications when phone number is added
+			// This will be saved when the user updates their phone number
+		}
+	});
 
 	// Show success message temporarily
 	$effect(() => {
@@ -113,16 +130,7 @@
 						/>
 					</div>
 
-					<div class="preference-item">
-						<div class="preference-info">
-							<h3>📊 Weekly Digest</h3>
-							<p>Get a weekly summary of your survey activity</p>
-						</div>
-						<Toggle 
-							name="weekly_digest" 
-							checked={preferences.weekly_digest}
-						/>
-					</div>
+
 				</div>
 
 				<div class="card-actions">
@@ -188,25 +196,43 @@
 				<p>Your basic account details</p>
 			</div>
 
-			<div class="account-info">
-				<div class="info-item">
-					<label>Full Name</label>
-					<span>{profile?.full_name || 'Not set'}</span>
+			<form 
+				method="POST" 
+				action="?/updateProfile"
+				use:enhance={() => {
+					isUpdatingProfile = true;
+					return async ({ update }) => {
+						await update();
+						isUpdatingProfile = false;
+					};
+				}}
+			>
+				<div class="profile-section">
+					<Input
+						name="full_name"
+						type="text"
+						placeholder="Enter your full name"
+						bind:value={fullName}
+						label="Full Name"
+						required={false}
+					/>
+					
+					<div class="info-item">
+						<label>Email</label>
+						<span>{profile?.email || data.user?.email || 'Not available'}</span>
+					</div>
 				</div>
-				<div class="info-item">
-					<label>Email</label>
-					<span>{profile?.email || data.user?.email || 'Not available'}</span>
-				</div>
-			</div>
 
-			<div class="card-actions">
-				<Button 
-					variant="outline"
-					on:click={() => goto('/create-account')}
-				>
-					Edit Profile
-				</Button>
-			</div>
+				<div class="card-actions">
+					<Button 
+						type="submit" 
+						variant="secondary"
+						disabled={isUpdatingProfile}
+					>
+						{isUpdatingProfile ? 'Updating...' : 'Update Profile'}
+					</Button>
+				</div>
+			</form>
 		</Card>
 	</div>
 </div>
@@ -220,6 +246,7 @@
 
 	.settings-header {
 		margin-bottom: 2rem;
+		margin-top: 3rem;
 	}
 
 	.header-content {
@@ -313,7 +340,7 @@
 		color: var(--text-secondary);
 	}
 
-	.phone-section {
+	.phone-section, .profile-section {
 		margin-bottom: 2rem;
 	}
 

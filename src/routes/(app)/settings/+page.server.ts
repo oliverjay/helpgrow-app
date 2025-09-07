@@ -40,8 +40,7 @@ export const actions: Actions = {
 		const notificationPreferences = {
 			email_notifications: formData.get('email_notifications') === 'on',
 			sms_notifications: formData.get('sms_notifications') === 'on',
-			milestone_notifications: formData.get('milestone_notifications') === 'on',
-			weekly_digest: formData.get('weekly_digest') === 'on'
+			milestone_notifications: formData.get('milestone_notifications') === 'on'
 		};
 		
 		const { error } = await locals.supabase
@@ -69,14 +68,59 @@ export const actions: Actions = {
 		const formData = await request.formData();
 		const phone = formData.get('phone') as string;
 		
+		// Get current notification preferences
+		const { data: currentProfile } = await locals.supabase
+			.from('users')
+			.select('notification_preferences')
+			.eq('id', user.id)
+			.single();
+		
+		const currentPreferences = currentProfile?.notification_preferences || {
+			email_notifications: true,
+			sms_notifications: false,
+			milestone_notifications: true
+		};
+		
+		// Auto-enable SMS notifications if phone number is provided and SMS is currently disabled
+		const updatedPreferences = {
+			...currentPreferences,
+			sms_notifications: phone && phone.trim() !== '' ? true : currentPreferences.sms_notifications
+		};
+		
 		const { error } = await locals.supabase
 			.from('users')
-			.update({ phone })
+			.update({ 
+				phone,
+				notification_preferences: updatedPreferences
+			})
 			.eq('id', user.id);
 		
 		if (error) {
 			console.error('Error updating phone:', error);
 			return { success: false, error: 'Failed to update phone number' };
+		}
+		
+		return { success: true };
+	},
+	
+	updateProfile: async ({ request, locals }) => {
+		const { session, user } = await locals.safeGetSession();
+		
+		if (!session || !user) {
+			return { success: false, error: 'Not authenticated' };
+		}
+		
+		const formData = await request.formData();
+		const full_name = formData.get('full_name') as string;
+		
+		const { error } = await locals.supabase
+			.from('users')
+			.update({ full_name })
+			.eq('id', user.id);
+		
+		if (error) {
+			console.error('Error updating profile:', error);
+			return { success: false, error: 'Failed to update profile' };
 		}
 		
 		return { success: true };
