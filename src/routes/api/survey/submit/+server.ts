@@ -1,0 +1,84 @@
+import { json } from '@sveltejs/kit';
+import type { RequestHandler } from './$types';
+import type { SurveySubmission } from '$lib/data/surveyQuestions';
+import { supabaseAdmin } from '$lib/private/supabase.server';
+
+export const POST: RequestHandler = async ({ request, locals }) => {
+	try {
+		const submission: SurveySubmission = await request.json();
+		
+		// Validate the submission
+		if (!submission.inviteCode || !submission.responses || submission.responses.length === 0) {
+			return json({ error: 'Invalid submission data' }, { status: 400 });
+		}
+
+		console.log('Survey submission received:', {
+			inviteCode: submission.inviteCode,
+			responseCount: submission.responses.length,
+			completedAt: submission.completedAt
+		});
+
+		// Generate a unique session ID for this survey submission
+		const responseSessionId = crypto.randomUUID();
+		
+		// Get respondent ID if they're logged in
+		const { session } = await locals.safeGetSession();
+		const respondentId = session?.user?.id || null;
+
+		// Prepare database records
+		const surveyRecords = submission.responses.map(response => {
+			let answerType: string;
+			let answerText: string | null = null;
+			let answerNumber: number | null = null;
+			let answerBoolean: boolean | null = null;
+
+			// Determine answer type and store in appropriate column
+			if (typeof response.answer === 'string') {
+				answerType = 'text';
+				answerText = response.answer;
+			} else if (typeof response.answer === 'number') {
+				answerType = 'number';
+				answerNumber = response.answer;
+			} else if (typeof response.answer === 'boolean') {
+				answerType = 'boolean';
+				answerBoolean = response.answer;
+			} else {
+				answerType = 'text';
+				answerText = String(response.answer);
+			}
+
+			return {
+				invite_code: submission.inviteCode,
+				respondent_id: respondentId,
+				question_id: response.questionId,
+				answer_type: answerType,
+				answer_text: answerText,
+				answer_number: answerNumber,
+				answer_boolean: answerBoolean,
+				response_session_id: responseSessionId
+			};
+		});
+
+		// Insert all responses into the database
+		const { error: insertError } = await supabaseAdmin
+			.from('survey_responses')
+			.insert(surveyRecords);
+
+		if (insertError) {
+			console.error('Database error storing survey responses:', insertError);
+			return json({ error: 'Failed to store survey responses' }, { status: 500 });
+		}
+
+		console.log(`Successfully stored ${surveyRecords.length} survey responses with session ID: ${responseSessionId}`);
+
+		return json({ 
+			success: true, 
+			message: 'Survey submitted successfully',
+			responseId: responseSessionId
+		});
+
+	} catch (error) {
+		console.error('Error submitting survey:', error);
+		return json({ error: 'Failed to submit survey' }, { status: 500 });
+	}
+}; 

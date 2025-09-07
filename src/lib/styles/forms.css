@@ -1,0 +1,477 @@
+/* ============ SHARED FORM INPUT STYLES ============ */
+.form-input-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-2);
+}
+
+.form-input-label {
+	font-weight: var(--font-weight-medium);
+	color: var(--color-text-primary);
+	font-size: var(--font-size-sm);
+}
+
+.form-input-label.required::after {
+	content: ' *';
+	color: var(--color-error);
+}
+
+.form-input-container {
+	display: flex;
+	align-items: center;
+	position: relative;
+	background-color: var(--color-bg-primary);
+	border: 1px solid var(--color-border-primary);
+	border-radius: var(--radius-md);
+	transition: all var(--transition-base);
+}
+
+.form-input-container:hover {
+	border-color: var(--color-border-secondary);
+}
+
+.form-input-container:focus-within {
+	border-color: var(--color-border-focus);
+	box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.form-input-container.error {
+	border-color: var(--color-error);
+}
+
+.form-input-container.error:focus-within {
+	box-shadow: 0 0 0 3px var(--color-error-light);
+}
+
+.form-input-container.disabled {
+	background-color: var(--color-bg-secondary);
+	border-color: var(--color-border-disabled);
+	cursor: not-allowed;
+}
+
+.form-input-field {
+	flex: 1;
+	border: none;
+	outline: none;
+	background: transparent;
+	color: var(--color-text-primary);
+	font-size: var(--font-size-base);
+	font-family: inherit;
+}
+
+.form-input-field::placeholder {
+	color: var(--color-text-placeholder);
+}
+
+.form-input-field:disabled {
+	cursor: not-allowed;
+	color: var(--color-text-disabled);
+}
+
+/* Size variants for containers */
+.form-input-container.size-sm {
+	padding: var(--spacing-2) var(--spacing-3);
+	font-size: var(--font-size-sm);
+}
+
+.form-input-container.size-md {
+	padding: var(--spacing-3) var(--spacing-4);
+	font-size: var(--font-size-base);
+}
+
+.form-input-container.size-lg {
+	padding: var(--spacing-4) var(--spacing-5);
+	font-size: var(--font-size-lg);
+}
+
+/* Helper and error text */
+.form-input-helper {
+	font-size: var(--font-size-sm);
+	color: var(--color-text-secondary);
+	margin-top: var(--spacing-1);
+}
+
+.form-input-error {
+	font-size: var(--font-size-sm);
+	color: var(--color-error);
+}
+
+/* Input icons */
+.form-input-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--color-text-secondary);
+	pointer-events: none;
+}
+
+.form-input-icon-left {
+	margin-right: var(--spacing-2);
+}
+
+.form-input-icon-right {
+	margin-left: var(--spacing-2);
+}
+
+.form-input-icon :global(svg) {
+	width: 16px;
+	height: 16px;
+}
+
+/* Input prefix/suffix */
+.form-input-prefix,
+.form-input-suffix {
+	color: var(--color-text-secondary);
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-medium);
+	white-space: nowrap;
+}
+
+.form-input-prefix {
+	margin-right: var(--spacing-2);
+	padding-right: var(--spacing-2);
+	border-right: 1px solid var(--color-border-primary);
+}
+
+.form-input-suffix {
+	margin-left: var(--spacing-2);
+	padding-left: var(--spacing-2);
+	border-left: 1px solid var(--color-border-primary);
+}
+
+/* Help icon */
+.form-input-help-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: none;
+	border: none;
+	color: var(--color-text-secondary);
+	cursor: pointer;
+	margin-left: var(--spacing-2);
+	padding: var(--spacing-1);
+	border-radius: var(--radius-sm);
+	transition: color var(--transition-fast);
+}
+
+.form-input-help-icon:hover {
+	color: var(--color-text-primary);
+	background-color: var(--color-bg-secondary);
+}
+
+/* Special styles for textarea */
+.form-input-field.textarea {
+	line-height: 1.5;
+	min-height: 80px;
+}
+
+/* Special styles for select */
+.form-input-field.select {
+	cursor: pointer;
+	appearance: none;
+	padding-right: var(--spacing-8); /* Make room for arrow */
+}
+
+.form-input-field.select option {
+	background-color: var(--color-bg-primary);
+	color: var(--color-text-primary);
+	padding: var(--spacing-2);
+}
+
+/* Dropdown arrow for select */
+.form-input-dropdown-arrow {
+	position: absolute;
+	right: var(--spacing-3);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--color-text-secondary);
+	pointer-events: none;
+}
+
+.form-input-dropdown-arrow svg {
+	width: 16px;
+	height: 16px;
+}
+
+/* Help icon positioning for textarea */
+.form-input-help-icon.textarea {
+	position: absolute;
+	top: var(--spacing-3);
+	right: var(--spacing-3);
+	margin-left: 0;
+}
+
+/* Input group specific styles */
+.form-input-group {
+	display: flex;
+	align-items: stretch;
+	overflow: hidden;
+}
+
+.form-input-group .form-input-field {
+	border-radius: 0;
+}
+
+.form-input-group .form-input-field:focus {
+	box-shadow: none;
+}
+
+/* ============ SHARED FORM CONTROL STYLES ============ */
+.form-control-input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.form-control-card {
+	display: block;
+	padding: var(--spacing-4);
+	border: 2px solid var(--color-border-primary);
+	border-radius: var(--radius-lg);
+	background-color: var(--color-bg-primary);
+	cursor: pointer;
+	transition: all var(--transition-fast);
+}
+
+.form-control-card:hover {
+	border-color: var(--color-border-secondary);
+	background-color: var(--color-bg-secondary);
+}
+
+.form-control-card.checked {
+	border-color: var(--color-primary);
+}
+
+.form-control-card.disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.form-control-card.error {
+	border-color: var(--color-error);
+}
+
+.form-control-card-content {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-2);
+}
+
+.form-control-card-header {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-3);
+}
+
+.form-control-card-icon {
+	width: 1.5rem;
+	height: 1.5rem;
+	color: var(--color-text-secondary);
+	flex-shrink: 0;
+}
+
+.form-control-card-title {
+	flex: 1;
+	font-size: var(--font-size-base);
+	font-weight: var(--font-weight-medium);
+	color: var(--color-text-primary);
+}
+
+.form-control-card-description {
+	font-size: var(--font-size-sm);
+	color: var(--color-text-secondary);
+	margin-left: calc(1.5rem + var(--spacing-3));
+}
+
+.form-control-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.25rem;
+	height: 1.25rem;
+	border: 2px solid var(--color-border-primary);
+	background-color: var(--color-bg-primary);
+	transition: all var(--transition-fast);
+	flex-shrink: 0;
+}
+
+.form-control-box.checked {
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+}
+
+.form-control-box.disabled {
+	background-color: var(--color-bg-disabled);
+	border-color: var(--color-border-disabled);
+}
+
+.form-control-box.error {
+	border-color: var(--color-error);
+}
+
+.form-control-toggle {
+	display: inline-flex;
+	align-items: center;
+	padding: var(--spacing-2) var(--spacing-4);
+	border: 2px solid var(--color-border-primary);
+	border-radius: var(--radius-lg);
+	background-color: var(--color-bg-primary);
+	cursor: pointer;
+	transition: all var(--transition-fast);
+}
+
+.form-control-toggle:hover {
+	border-color: var(--color-border-secondary);
+	background-color: var(--color-bg-secondary);
+}
+
+.form-control-toggle.checked {
+	background-color: var(--color-primary);
+	border-color: var(--color-primary);
+}
+
+.form-control-toggle.disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.form-control-toggle-text {
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-medium);
+	color: var(--color-text-primary);
+	user-select: none;
+}
+
+.form-control-toggle.checked .form-control-toggle-text {
+	color: var(--color-white);
+}
+
+.form-control-error {
+	font-size: var(--font-size-xs);
+	color: var(--color-error);
+	margin-top: var(--spacing-1);
+}
+
+.form-control-helper {
+	font-size: var(--font-size-xs);
+	color: var(--color-text-secondary);
+	margin-top: var(--spacing-1);
+}
+
+/* ============ SHARED FORM CONTROL WRAPPER STYLES ============ */
+.form-control-wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-2);
+}
+
+.form-control-simple-input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.form-control-simple-label {
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-2);
+	cursor: pointer;
+	position: relative;
+}
+
+.form-control-simple-text {
+	color: var(--color-text-primary);
+	font-size: var(--font-size-sm);
+	font-weight: var(--font-weight-medium);
+	user-select: none;
+}
+
+/* Size variants for simple controls */
+.form-control-wrapper.size-sm .form-control-simple-text {
+	font-size: var(--font-size-xs);
+}
+
+.form-control-wrapper.size-lg .form-control-simple-text {
+	font-size: var(--font-size-base);
+}
+
+/* Disabled state */
+.form-control-wrapper.disabled .form-control-simple-label {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.form-control-wrapper.disabled .form-control-box {
+	background-color: var(--color-bg-disabled);
+	border-color: var(--color-border-disabled);
+}
+
+/* Error state */
+.form-control-wrapper.error .form-control-box {
+	border-color: var(--color-error);
+}
+
+/* Focus states */
+.form-control-simple-input:focus + .form-control-box {
+	outline: 2px solid var(--color-primary);
+	outline-offset: 2px;
+}
+
+/* ============ CHECKBOX SPECIFIC STYLES ============ */
+.checkbox-box {
+	border-radius: var(--radius-sm);
+}
+
+.checkbox-icon {
+	width: 1rem;
+	height: 1rem;
+	color: var(--color-white);
+	opacity: 0;
+	transition: opacity var(--transition-fast);
+}
+
+.checkbox-box.checked .checkbox-icon {
+	opacity: 1;
+}
+
+/* ============ RADIO BUTTON SPECIFIC STYLES ============ */
+.radio-box {
+	border-radius: var(--radius-full);
+}
+
+.radio-dot {
+	width: 0.625rem;
+	height: 0.625rem;
+	border-radius: var(--radius-full);
+	background-color: var(--color-white);
+	opacity: 0;
+	transition: opacity var(--transition-fast);
+}
+
+.radio-box.checked .radio-dot {
+	opacity: 1;
+}
+
+/* ============ DARK MODE ADJUSTMENTS ============ */
+html.dark .form-control-card.checked {
+	background-color: var(--color-primary-dark);
+}
+
+html.dark .form-input-container {
+	background-color: var(--color-bg-primary);
+	border-color: var(--color-border-primary);
+}
+
+html.dark .form-input-container:hover {
+	border-color: var(--color-border-secondary);
+}
+
+html.dark .form-input-container.disabled {
+	background-color: var(--color-bg-secondary);
+}
+
+html.dark .form-input-field.select option {
+	background-color: var(--color-bg-primary);
+	color: var(--color-text-primary);
+}
