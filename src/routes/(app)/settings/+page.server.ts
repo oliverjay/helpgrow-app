@@ -11,9 +11,9 @@ export const load: PageServerLoad = async ({ locals }) => {
 	
 	// Get user profile and notification preferences
 	const { data: profile, error } = await locals.supabase
-		.from('user_profiles')
+		.from('users')
 		.select('full_name, email, phone, notification_preferences')
-		.eq('user_id', user.id)
+		.eq('id', user.id)
 		.single();
 	
 	if (error) {
@@ -45,11 +45,11 @@ export const actions: Actions = {
 		};
 		
 		const { error } = await locals.supabase
-			.from('user_profiles')
+			.from('users')
 			.update({ 
 				notification_preferences: notificationPreferences
 			})
-			.eq('user_id', user.id);
+			.eq('id', user.id);
 		
 		if (error) {
 			console.error('Error updating notification preferences:', error);
@@ -70,9 +70,9 @@ export const actions: Actions = {
 		const phone = formData.get('phone') as string;
 		
 		const { error } = await locals.supabase
-			.from('user_profiles')
+			.from('users')
 			.update({ phone })
-			.eq('user_id', user.id);
+			.eq('id', user.id);
 		
 		if (error) {
 			console.error('Error updating phone:', error);

@@ -1,10 +1,13 @@
--- Add notification preferences to user profiles
-ALTER TABLE user_profiles ADD COLUMN IF NOT EXISTS notification_preferences JSONB DEFAULT '{
+-- Add notification preferences to users table
+ALTER TABLE users ADD COLUMN IF NOT EXISTS notification_preferences JSONB DEFAULT '{
   "email_notifications": true,
   "sms_notifications": false,
   "milestone_notifications": true,
   "weekly_digest": false
 }'::jsonb;
+
+-- Add phone column to users table if it doesn't exist
+ALTER TABLE users ADD COLUMN IF NOT EXISTS phone TEXT;
 
 -- Create notification_logs table to track sent notifications
 CREATE TABLE IF NOT EXISTS notification_logs (
@@ -29,10 +32,10 @@ CREATE POLICY "Users can view own notification logs"
   USING (auth.uid() = user_id);
 
 -- Indexes
-CREATE INDEX idx_notification_logs_user_id ON notification_logs(user_id);
-CREATE INDEX idx_notification_logs_type ON notification_logs(notification_type);
-CREATE INDEX idx_notification_logs_status ON notification_logs(status);
-CREATE INDEX idx_notification_logs_created_at ON notification_logs(created_at);
+CREATE INDEX IF NOT EXISTS idx_notification_logs_user_id ON notification_logs(user_id);
+CREATE INDEX IF NOT EXISTS idx_notification_logs_type ON notification_logs(notification_type);
+CREATE INDEX IF NOT EXISTS idx_notification_logs_status ON notification_logs(status);
+CREATE INDEX IF NOT EXISTS idx_notification_logs_created_at ON notification_logs(created_at);
 
 -- Function to get unique response count for a user
 CREATE OR REPLACE FUNCTION get_user_response_count_with_details(user_uuid UUID)
@@ -65,10 +68,10 @@ BEGIN
   -- Determine notification type
   notification_type := 'milestone_' || milestone_number;
   
-  -- Check user preferences
-  SELECT up.notification_preferences INTO user_preferences
-  FROM user_profiles up
-  WHERE up.user_id = user_uuid;
+  -- Check user preferences from users table
+  SELECT u.notification_preferences INTO user_preferences
+  FROM users u
+  WHERE u.id = user_uuid;
   
   -- Return false if user has disabled milestone notifications
   IF NOT COALESCE((user_preferences->>'milestone_notifications')::BOOLEAN, true) THEN
