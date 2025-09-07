@@ -36,19 +36,29 @@ export const auth = {
 	},
 
 	async signInWithProvider(provider: 'google' | 'github' | 'discord') {
+		// Use production domain for OAuth redirects when available
+		const baseUrl = window.location.hostname === 'localhost' 
+			? window.location.origin 
+			: 'https://helpgrow-app.vercel.app'; // or 'https://helpgrow.app' when DNS is configured
+			
 		return await supabase.auth.signInWithOAuth({
 			provider,
 			options: {
-				redirectTo: `${window.location.origin}/auth/callback`
+				redirectTo: `${baseUrl}/auth/callback`
 			}
 		});
 	},
 
 	async signInWithOtp(email: string, options?: { shouldCreateUser?: boolean }) {
+		// Use production domain for email redirects when available
+		const baseUrl = window.location.hostname === 'localhost' 
+			? window.location.origin 
+			: 'https://helpgrow-app.vercel.app'; // or 'https://helpgrow.app' when DNS is configured
+			
 		return await supabase.auth.signInWithOtp({
 			email,
 			options: {
-				emailRedirectTo: `${window.location.origin}/auth/callback`,
+				emailRedirectTo: `${baseUrl}/auth/callback`,
 				...options
 			}
 		});
