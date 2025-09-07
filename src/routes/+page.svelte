@@ -260,16 +260,14 @@
 	<div class="container">
 		<div class="footer-content">
 			<div class="footer-brand">
-				<p>Discover yourself through others' eyes</p>
+				<p>HelpGrow &copy; 2024 All rights reserved.</p>
 			</div>
 			<div class="footer-links">
 				<a href="/privacy">Privacy</a>
 				<a href="/terms">Terms</a>
 			</div>
 		</div>
-		<div class="footer-bottom">
-			<p>&copy; 2024 All rights reserved.</p>
-		</div>
+	
 	</div>
 </footer>
 
@@ -615,7 +613,7 @@
 	/* Features Section */
 	.features {
 		padding: var(--spacing-20) 0;
-		background: #FDFDFD;
+		background: #ecf1ec;
 		opacity: 0;
 		transform: translateY(30px);
 		transition: all 0.6s ease-out;
@@ -781,7 +779,7 @@
 	/* Testimonials Section */
 	.testimonials {
 		padding: var(--spacing-20) 0;
-		background: white;
+		background:#ecf1ec;
 		opacity: 0;
 		transform: translateY(30px);
 		transition: all 0.6s ease-out;
@@ -866,7 +864,7 @@
 
 	/* CTA Section */
 	.cta-section {
-		background: #FDFDFD;
+		background: #ecf1ec;
 		position: relative;
 		padding: var(--spacing-20) 0;
 		/* background: linear-gradient(135deg, #065f46 0%, #047857 100%); */
