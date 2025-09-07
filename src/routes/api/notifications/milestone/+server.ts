@@ -34,22 +34,33 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		console.log(`Processing milestone notification for user ${userId} with ${responseCount} responses`);
 
-		// Get user details
+		// Get user details from both users table and auth.users table
 		const { data: userProfile, error: userError } = await supabaseAdmin
 			.from('users')
-			.select('full_name, email, notification_preferences, phone')
+			.select('full_name, notification_preferences, phone')
 			.eq('id', userId)
 			.single();
+		
+		// Get email from auth.users table
+		const { data: authUser, error: authError } = await supabaseAdmin.auth.admin.getUserById(userId);
 
-		if (userError || !userProfile) {
-			console.error('❌ Error fetching user profile:', userError);
+		if (userError || !userProfile || authError || !authUser?.user) {
+			console.error('❌ Error fetching user data:', { userError, authError });
 			console.log('👤 User profile data:', userProfile);
+			console.log('👤 Auth user data:', authUser?.user);
 			return json({ error: 'User not found' }, { status: 404 });
+		}
+		
+		const email = authUser.user.email;
+		
+		if (!email) {
+			console.error('❌ No email found for user');
+			return json({ error: 'User email not found' }, { status: 404 });
 		}
 		
 		console.log('✅ User profile loaded:', {
 			full_name: userProfile.full_name,
-			email: userProfile.email,
+			email: email,
 			notification_preferences: userProfile.notification_preferences,
 			phone: userProfile.phone ? '***' + userProfile.phone.slice(-4) : 'none'
 		});
@@ -110,7 +121,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			const notificationData = {
 				userId,
 				userName: userProfile.full_name || 'there',
-				userEmail: userProfile.email,
+				userEmail: email,
 				responseCount,
 				milestoneNumber: milestone,
 				dashboardUrl: `https://helpgrow.app/dashboard`
