@@ -10,10 +10,10 @@
 			<div class="og-previews">
 				<div class="og-preview-item">
 					<h4>General (Facebook, LinkedIn, Slack, etc.)</h4>
-					<code>static/open-graph/og-image-general.png</code>
+					<code>static/open-graph/og-image-general.webp</code>
 					<div class="og-preview">
 						<img
-							src="/open-graph/og-image-general.png"
+							src="/open-graph/og-image-general.webp"
 							alt="General OG preview"
 							class="og-image-display"
 						/>
@@ -23,10 +23,10 @@
 
 				<div class="og-preview-item">
 					<h4>Twitter/X</h4>
-					<code>static/open-graph/og-twitter.png</code>
+					<code>static/open-graph/og-twitter.webp</code>
 					<div class="og-preview">
 						<img
-							src="/open-graph/og-image-general.png"
+							src="/open-graph/og-twitter.webp"
 							alt="Twitter OG Preview"
 							class="og-image-display"
 						/>

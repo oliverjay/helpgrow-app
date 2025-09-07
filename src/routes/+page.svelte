@@ -237,7 +237,7 @@
 					<p>I discovered communication blind spots that were holding me back at work. The insights helped me become a better leader and teammate.</p>
 				</div>
 				<div class="testimonial-author">
-					<img src="/avatars/7.png" alt="Sarah Chen" class="author-avatar" />
+					<img src="/avatars/7.webp" alt="Sarah Chen" class="author-avatar" />
 					<div class="author-info">
 						<div class="author-name">Sarah Chen</div>
 						<div class="author-title">Self-Discovery Enthusiast</div>
@@ -251,7 +251,7 @@
 					<p>The anonymous feedback revealed strengths I didn't know I had. It boosted my confidence and helped me understand my impact on others.</p>
 				</div>
 				<div class="testimonial-author">
-					<img src="/avatars/13.png" alt="Marcus Johnson" class="author-avatar" />
+					<img src="/avatars/13.webp" alt="Marcus Johnson" class="author-avatar" />
 					<div class="author-info">
 						<div class="author-name">Marcus Johnson</div>
 						<div class="author-title">Personal Growth Advocate</div>
@@ -265,7 +265,7 @@
 					<p>The 6-category breakdown was incredibly detailed. I learned about my personality in ways that traditional assessments never captured.</p>
 				</div>
 				<div class="testimonial-author">
-					<img src="/avatars/22.png" alt="Alex Rivera" class="author-avatar" />
+					<img src="/avatars/22.webp" alt="Alex Rivera" class="author-avatar" />
 					<div class="author-info">
 						<div class="author-name">Alex Rivera</div>
 						<div class="author-title">Personality Insights Explorer</div>

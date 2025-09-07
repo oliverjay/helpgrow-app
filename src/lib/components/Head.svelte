@@ -5,7 +5,7 @@
 	let {
 		title,
 		description = APP_DESCRIPTION,
-		image = `${APP_URL}/open-graph/og-image-general.png`,
+		image = `${APP_URL}/open-graph/og-image-general.webp`,
 		imageAlt = APP_NAME,
 		url = $page.url.href,
 		type = 'website',

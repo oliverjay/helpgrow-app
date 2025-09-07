@@ -32,7 +32,7 @@
 
 	// Get avatar - prioritize custom avatar, fallback to OAuth avatar
 	let userAvatar = $derived.by(() => {
-		const customAvatar = userProfile?.avatar_id ? `/avatars/${userProfile.avatar_id}.png` : null;
+		const customAvatar = userProfile?.avatar_id ? `/avatars/${userProfile.avatar_id}.webp` : null;
 		const oauthAvatar = user?.user_metadata?.avatar_url || user?.user_metadata?.picture || null;
 		return customAvatar || oauthAvatar;
 	});

@@ -13,48 +13,48 @@
 			<div class="favicon-grid">
 				<div class="favicon-item">
 					<div class="favicon-preview" style="width: 16px; height: 16px;">
-						<img src="/favicons/favicon-16x16.png" alt="16x16 favicon" width="16" height="16" />
+						<img src="/favicons/favicon-16x16.webp" alt="16x16 favicon" width="16" height="16" />
 					</div>
 					<p>16x16 (Browser tabs)</p>
-					<code>favicon-16x16.png</code>
+					<code>favicon-16x16.webp</code>
 				</div>
 				<div class="favicon-item">
 					<div class="favicon-preview" style="width: 32px; height: 32px;">
-						<img src="/favicons/favicon-32x32.png" alt="32x32 favicon" width="32" height="32" />
+						<img src="/favicons/favicon-32x32.webp" alt="32x32 favicon" width="32" height="32" />
 					</div>
 					<p>32x32 (Desktop browsers)</p>
-					<code>favicon-32x32.png</code>
+					<code>favicon-32x32.webp</code>
 				</div>
 				<div class="favicon-item">
 					<div class="favicon-preview apple-touch" style="width: 60px; height: 60px;">
-						<img
-							src="/favicons/apple-touch-icon.png"
-							alt="Apple touch icon"
-							width="60"
-							height="60"
-						/>
+											<img
+						src="/favicons/apple-touch-icon.webp"
+						alt="Apple touch icon"
+						width="60"
+						height="60"
+					/>
 					</div>
 					<p>180x180 (Apple Touch)</p>
-					<code>apple-touch-icon.png</code>
+					<code>apple-touch-icon.webp</code>
 				</div>
 				<div class="favicon-item">
 					<div class="favicon-preview" style="width: 48px; height: 48px;">
 						<img
-							src="/favicons/android-chrome-192x192.png"
+							src="/favicons/android-chrome-192x192.webp"
 							alt="Android Chrome icon"
 							width="48"
 							height="48"
 						/>
 					</div>
 					<p>192x192 (Android Chrome)</p>
-					<code>android-chrome-192x192.png</code>
+					<code>android-chrome-192x192.webp</code>
 				</div>
 				<div class="favicon-item">
 					<div class="favicon-preview" style="width: 56px; height: 56px;">
-						<img src="/favicons/android-chrome-512x512.png" alt="PWA icon" width="56" height="56" />
+						<img src="/favicons/android-chrome-512x512.webp" alt="PWA icon" width="56" height="56" />
 					</div>
 					<p>512x512 (PWA)</p>
-					<code>android-chrome-512x512.png</code>
+					<code>android-chrome-512x512.webp</code>
 				</div>
 				<div class="favicon-item">
 					<div class="favicon-preview" style="width: 32px; height: 32px;">
@@ -73,11 +73,11 @@
 			<div class="implementation-note">
 				<h4>Files Required:</h4>
 				<ul>
-					<li><code>favicon-16x16.png</code> - Browser tabs</li>
-					<li><code>favicon-32x32.png</code> - Desktop browsers</li>
-					<li><code>apple-touch-icon.png</code> - iOS homescreen (180x180)</li>
-					<li><code>android-chrome-192x192.png</code> - Android Chrome</li>
-					<li><code>android-chrome-512x512.png</code> - PWA splash screen</li>
+									<li><code>favicon-16x16.webp</code> - Browser tabs</li>
+				<li><code>favicon-32x32.webp</code> - Desktop browsers</li>
+					<li><code>apple-touch-icon.webp</code> - iOS homescreen (180x180)</li>
+					<li><code>android-chrome-192x192.webp</code> - Android Chrome</li>
+					<li><code>android-chrome-512x512.webp</code> - PWA splash screen</li>
 					<li><code>favicon-svg.svg</code> - Modern browsers (scalable)</li>
 				</ul>
 			</div>

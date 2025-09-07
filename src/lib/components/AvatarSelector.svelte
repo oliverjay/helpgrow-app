@@ -24,7 +24,7 @@
 		
 		<div class="avatar-display">
 			<img 
-				src="/avatars/{value}.png" 
+				src="/avatars/{value}.webp" 
 				alt="Avatar {value}"
 				class="avatar-image"
 			/>

@@ -33,7 +33,7 @@
 			<div class="avatar-container">
 				{#if data.inviterProfile?.avatar_id}
 					<img 
-						src="/avatars/{data.inviterProfile.avatar_id}.png" 
+						src="/avatars/{data.inviterProfile.avatar_id}.webp" 
 						alt="{inviterName}'s avatar"
 						class="avatar-image"
 					/>
