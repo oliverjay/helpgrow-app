@@ -1,12 +1,11 @@
--- Add notification preferences to users table
-ALTER TABLE users ADD COLUMN IF NOT EXISTS notification_preferences JSONB DEFAULT '{
+-- Add notification preferences to user_profiles table
+ALTER TABLE user_profiles ADD COLUMN IF NOT EXISTS notification_preferences JSONB DEFAULT '{
   "email_notifications": true,
   "sms_notifications": false,
   "milestone_notifications": true
 }'::jsonb;
 
--- Add phone column to users table if it doesn't exist
-ALTER TABLE users ADD COLUMN IF NOT EXISTS phone TEXT;
+-- Phone column already exists in user_profiles table
 
 -- Create notification_logs table to track sent notifications
 CREATE TABLE IF NOT EXISTS notification_logs (
@@ -67,10 +66,10 @@ BEGIN
   -- Determine notification type
   notification_type := 'milestone_' || milestone_number;
   
-  -- Check user preferences from users table
-  SELECT u.notification_preferences INTO user_preferences
-  FROM users u
-  WHERE u.id = user_uuid;
+  -- Check user preferences from user_profiles table
+  SELECT up.notification_preferences INTO user_preferences
+  FROM user_profiles up
+  WHERE up.user_id = user_uuid;
   
   -- Return false if user has disabled milestone notifications
   IF NOT COALESCE((user_preferences->>'milestone_notifications')::BOOLEAN, true) THEN

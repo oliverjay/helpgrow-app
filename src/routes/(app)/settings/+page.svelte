@@ -27,6 +27,11 @@
 		if (profile) {
 			phoneNumber = profile.phone || '';
 			fullName = profile.full_name || '';
+			console.log('Profile data loaded:', {
+				profile,
+				phoneNumber,
+				fullName
+			});
 		}
 	});
 
@@ -242,6 +247,8 @@
 		max-width: 800px;
 		margin: 0 auto;
 		padding: 2rem 1rem;
+		background: var(--bg-primary, #ffffff);
+		min-height: 100vh;
 	}
 
 	.settings-header {
