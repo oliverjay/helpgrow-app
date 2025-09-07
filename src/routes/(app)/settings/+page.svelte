@@ -19,11 +19,12 @@
 	let isUpdatingPhone = $state(false);
 	let isUpdatingProfile = $state(false);
 	let showSuccess = $state(false);
-	let phoneNumber = $state(profile?.phone || '');
-	let fullName = $state(profile?.full_name || '');
+	let phoneNumber = $state('');
+	let fullName = $state('');
 
 	// Update form values when profile data changes
 	$effect(() => {
+		console.log('Profile effect running:', { profile });
 		if (profile) {
 			phoneNumber = profile.phone || '';
 			fullName = profile.full_name || '';
@@ -243,11 +244,18 @@
 </div>
 
 <style>
+	/* Override any background colors */
+	:global(body) {
+		background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%) !important;
+		min-height: 100vh;
+	}
+
 	.settings-container {
 		max-width: 800px;
 		margin: 0 auto;
 		padding: 2rem 1rem;
 		min-height: 100vh;
+		background: transparent;
 	}
 
 	.settings-header {
