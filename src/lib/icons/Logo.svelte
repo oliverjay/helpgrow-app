@@ -3,7 +3,7 @@
 </script>
 
 <img
-	src="/logo.avif"
+	src="/logo.webp"
 	alt="HelpGrow"
 	{width}
 	{height}

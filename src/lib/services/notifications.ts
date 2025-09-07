@@ -357,9 +357,9 @@ export async function shouldSendMilestoneNotification(userId: string, milestoneN
 export async function getUserNotificationPreferences(userId: string) {
 	try {
 		const { data, error } = await supabaseAdmin
-			.from('user_profiles')
+			.from('users')
 			.select('notification_preferences, phone')
-			.eq('user_id', userId)
+			.eq('id', userId)
 			.single();
 		
 		if (error) throw error;

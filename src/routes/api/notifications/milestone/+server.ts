@@ -32,9 +32,9 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		// Get user details
 		const { data: userProfile, error: userError } = await supabaseAdmin
-			.from('user_profiles')
+			.from('users')
 			.select('full_name, email, notification_preferences, phone')
-			.eq('user_id', userId)
+			.eq('id', userId)
 			.single();
 
 		if (userError || !userProfile) {
