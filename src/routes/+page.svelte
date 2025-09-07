@@ -42,9 +42,15 @@
 			</h1>
 			
 			<p class="hero-description">
-				Unlock powerful personality insights through anonymous feedback from people who know you best. 
-				Discover your hidden strengths, blind spots, and how to make a stronger impact.
+				Anonymous feedback from those who know you best—spot strengths, blind spots, and boost your impact.
 			</p>
+			
+			<div class="time-promise">
+				<div class="time-badge">
+					<span class="time-icon">⏱️</span>
+					<span>Takes 5 minutes or less</span>
+				</div>
+			</div>
 			
 			<div class="hero-actions">
 				<Button href="/login?mode=signup" variant="primary" size="xl">
@@ -67,29 +73,6 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="hero-visual">
-			<div class="insight-cards">
-				<div class="insight-card card-1">
-					<div class="card-icon">🧠</div>
-					<div class="card-title">Cognitive Style</div>
-					<div class="card-trait">Quick Decision Maker</div>
-					<div class="card-score">4.2/5</div>
-				</div>
-				<div class="insight-card card-2">
-					<div class="card-icon">🤝</div>
-					<div class="card-title">Social Dynamics</div>
-					<div class="card-trait">Natural Collaborator</div>
-					<div class="card-score">4.7/5</div>
-				</div>
-				<div class="insight-card card-3">
-					<div class="card-icon">⚡</div>
-					<div class="card-title">Work & Achievement</div>
-					<div class="card-trait">High Achiever</div>
-					<div class="card-score">4.5/5</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </section>
 
@@ -103,11 +86,10 @@
 		
 		<div class="features-grid">
 			<div class="feature-card">
-				<div class="feature-icon">
-					<div class="icon-background">
-						<span>🔗</span>
-					</div>
+				<div class="feature-image">
+					<img src="/how-it-works/1.webp" alt="Share Your Unique Link" />
 				</div>
+				<div class="feature-number">Step 1</div>
 				<h3>Share Your Unique Link</h3>
 				<p>Send a personalized survey link to friends, family, colleagues, and anyone who knows you well.</p>
 				<div class="feature-detail">
@@ -116,11 +98,10 @@
 			</div>
 			
 			<div class="feature-card">
-				<div class="feature-icon">
-					<div class="icon-background">
-						<span>📊</span>
-					</div>
+				<div class="feature-image">
+					<img src="/how-it-works/2.webp" alt="They Answer 27 Questions" />
 				</div>
+				<div class="feature-number">Step 2</div>
 				<h3>They Answer 27 Questions</h3>
 				<p>A comprehensive personality assessment covering 6 core areas of your character and behavior.</p>
 				<div class="feature-detail">
@@ -129,17 +110,22 @@
 			</div>
 			
 			<div class="feature-card">
-				<div class="feature-icon">
-					<div class="icon-background">
-						<span>🎯</span>
-					</div>
+				<div class="feature-image">
+					<img src="/how-it-works/3.webp" alt="Get Detailed Insights" />
 				</div>
+				<div class="feature-number">Step 3</div>
 				<h3>Get Detailed Insights</h3>
 				<p>Receive a beautiful, comprehensive report with strengths, growth areas, and actionable advice.</p>
 				<div class="feature-detail">
 					<span class="detail-badge">Instant Results</span>
 				</div>
 			</div>
+		</div>
+		
+		<div class="section-cta">
+			<Button href="/login?mode=signup" variant="primary" size="xl">
+				Get Started Free
+			</Button>
 		</div>
 	</div>
 </section>
@@ -157,68 +143,39 @@
 				<div class="category-icon">🧠</div>
 				<h3>Cognitive Style</h3>
 				<p>How you think, make decisions, and solve problems</p>
-				<ul class="category-traits">
-					<li>Decision-making speed</li>
-					<li>Risk tolerance</li>
-					<li>Learning preferences</li>
-				</ul>
 			</div>
 			
 			<div class="category-preview">
 				<div class="category-icon">🤝</div>
 				<h3>Social Dynamics</h3>
 				<p>Your interaction style and emotional intelligence</p>
-				<ul class="category-traits">
-					<li>Communication style</li>
-					<li>Social energy</li>
-					<li>Conflict resolution</li>
-				</ul>
 			</div>
 			
 			<div class="category-preview">
 				<div class="category-icon">⚡</div>
 				<h3>Work & Achievement</h3>
 				<p>Your approach to goals, quality, and performance</p>
-				<ul class="category-traits">
-					<li>Initiative taking</li>
-					<li>Perfectionism</li>
-					<li>Stress response</li>
-				</ul>
 			</div>
 			
 			<div class="category-preview">
 				<div class="category-icon">🎭</div>
 				<h3>Personality Traits</h3>
 				<p>Core characteristics and behavioral patterns</p>
-				<ul class="category-traits">
-					<li>Reliability</li>
-					<li>Optimism</li>
-					<li>Adaptability</li>
-				</ul>
 			</div>
 			
 			<div class="category-preview">
 				<div class="category-icon">🎯</div>
 				<h3>Values & Motivation</h3>
 				<p>What drives you and shapes your priorities</p>
-				<ul class="category-traits">
-					<li>Core values</li>
-					<li>Work-life balance</li>
-					<li>Independence</li>
-				</ul>
 			</div>
 			
 			<div class="category-preview">
 				<div class="category-icon">🌟</div>
 				<h3>Unique Strengths</h3>
 				<p>Your superpowers and distinctive qualities</p>
-				<ul class="category-traits">
-					<li>Creative vs analytical</li>
-					<li>Leadership style</li>
-					<li>Energy sources</li>
-				</ul>
 			</div>
 		</div>
+
 	</div>
 </section>
 
@@ -278,20 +235,19 @@
 
 <!-- CTA Section -->
 <section class="cta-section">
-	<div class="cta-background">
-		<div class="cta-gradient"></div>
-	</div>
+
 	<div class="container">
 		<div class="cta-content">
-							<h2>Ready to Discover<br/>Your True Impact?</h2>
+		
+							<h2>Ready to Discover Your True Impact?</h2>
 			<p>Join thousands who improved their relationships with us.</p>
 			<div class="cta-actions">
 				<Button href="/login?mode=signup" variant="primary" size="xl">
 					Get Started Free
 				</Button>
 				<div class="cta-note">
-					<span>✓ No credit card required</span>
-					<span>✓ Results in minutes</span>
+					<span>✓ Free to use</span>
+					<span>✓ Instant results</span>
 					<span>✓ Completely anonymous</span>
 				</div>
 			</div>
@@ -304,7 +260,6 @@
 	<div class="container">
 		<div class="footer-content">
 			<div class="footer-brand">
-				<h3>HelpGrow</h3>
 				<p>Discover yourself through others' eyes</p>
 			</div>
 			<div class="footer-links">
@@ -313,7 +268,7 @@
 			</div>
 		</div>
 		<div class="footer-bottom">
-			<p>&copy; 2024 HelpGrow. All rights reserved.</p>
+			<p>&copy; 2024 All rights reserved.</p>
 		</div>
 	</div>
 </footer>
@@ -359,7 +314,7 @@
 		min-height: 100vh;
 		display: flex;
 		align-items: center;
-		background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+		background: #FDFDFD;
 		opacity: 0;
 		transform: translateY(20px);
 		transition: all 0.6s ease-out;
@@ -421,16 +376,18 @@
 	}
 
 	.hero .container {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: var(--spacing-16);
+		display: flex;
+		flex-direction: column;
 		align-items: center;
+		text-align: center;
 		padding-top: var(--spacing-20);
 		padding-bottom: var(--spacing-20);
+		max-width: 800px;
 	}
 
 	.hero-content {
 		z-index: 1;
+		width: 100%;
 	}
 
 	.hero-badge {
@@ -459,7 +416,9 @@
 		color: #0f172a;
 		margin-bottom: var(--spacing-6);
 		letter-spacing: -0.02em;
-		max-width: 600px;
+		max-width: 800px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	.gradient-text {
@@ -468,7 +427,7 @@
 		-webkit-background-clip: text;
 		background-clip: text;
 		-webkit-text-fill-color: transparent;
-		font-weight: 800;
+		/* font-weight: 800; */
 		display: inline-block;
 	}
 
@@ -477,13 +436,16 @@
 		line-height: 1.7;
 		color: #64748b;
 		margin-bottom: var(--spacing-10);
-		max-width: 500px;
+		max-width: 600px;
+		margin-left: auto;
+		margin-right: auto;
 		font-weight: 400;
 	}
 
 	.hero-actions {
 		display: flex;
 		align-items: center;
+		justify-content: center;
 		gap: var(--spacing-6);
 		margin-bottom: var(--spacing-12);
 	}
@@ -523,11 +485,12 @@
 
 	.hero-stats {
 		display: flex;
+		justify-content: center;
 		gap: var(--spacing-8);
 	}
 
 	.stat-item {
-		text-align: left;
+		text-align: center;
 	}
 
 	.stat-number {
@@ -542,6 +505,31 @@
 		font-size: 0.875rem;
 		color: #64748b;
 		font-weight: 500;
+	}
+
+	/* Time Promise */
+	.time-promise {
+		display: flex;
+		justify-content: center;
+		margin: var(--spacing-6) 0;
+	}
+
+	.time-badge {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--spacing-2);
+		padding: var(--spacing-3) var(--spacing-6);
+		background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+		border: 1px solid #a7f3d0;
+		border-radius: 50px;
+		font-size: 0.875rem;
+		color: #065f46;
+		font-weight: 600;
+		box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
+	}
+
+	.time-icon {
+		font-size: 1rem;
 	}
 
 	/* Hero Visual */
@@ -627,7 +615,7 @@
 	/* Features Section */
 	.features {
 		padding: var(--spacing-20) 0;
-		background: white;
+		background: #FDFDFD;
 		opacity: 0;
 		transform: translateY(30px);
 		transition: all 0.6s ease-out;
@@ -636,6 +624,14 @@
 	.features.visible {
 		opacity: 1;
 		transform: translateY(0);
+	}
+
+	/* Section CTA */
+	.section-cta {
+		display: flex;
+		justify-content: center;
+		margin-top: var(--spacing-12);
+		padding-top: var(--spacing-8);
 	}
 
 	.features-grid {
@@ -647,41 +643,42 @@
 	.feature-card {
 		text-align: center;
 		padding: var(--spacing-10);
-		background: #fafafa;
+		background: white;
 		border-radius: 20px;
 		transition: all 0.3s ease;
 		position: relative;
-		border: 1px solid #f1f5f9;
+		border: 1px solid #e2e8f0;
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 	}
 
 	.feature-card:hover {
 		transform: translateY(-4px);
-		background: white;
-		border-color: #e2e8f0;
+		box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+		border-color: #d1d5db;
 	}
 
-	.feature-icon {
+	.feature-image {
 		margin-bottom: var(--spacing-8);
+		width: 100%;
+		max-width: 200px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
-	.icon-background {
-		width: 80px;
-		height: 80px;
-		margin: 0 auto;
-		background: #10b981;
-		border-radius: 20px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 2rem;
+	.feature-number {
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: #10b981;
+		margin-bottom: var(--spacing-4);
+		letter-spacing: -0.01em;
 	}
 
-	.feature-card:nth-child(2) .icon-background {
-		background: #22c55e;
-	}
-
-	.feature-card:nth-child(3) .icon-background {
-		background: #06b6d4;
+	.feature-image img {
+		width: 100%;
+		height: 200px;
+		object-fit: contain;
+		/* border-radius: 16px; */
+		/* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
 	}
 
 	.feature-card h3 {
@@ -714,7 +711,7 @@
 	/* Categories Section */
 	.categories {
 		padding: var(--spacing-20) 0;
-		background: #fafafa;
+		background: #FDFDFD;
 	}
 
 	.categories-grid {
@@ -727,13 +724,14 @@
 		padding: var(--spacing-8);
 		background: white;
 		border-radius: 16px;
-		border: 1px solid #f1f5f9;
+		border: 1px solid #e2e8f0;
 		transition: all 0.3s ease;
+		text-align: center;
 	}
 
 	.category-preview:hover {
 		transform: translateY(-2px);
-		border-color: #e2e8f0;
+		/* border-color: #e2e8f0; */
 	}
 
 	.category-icon {
@@ -802,7 +800,7 @@
 
 	.testimonial-card {
 		padding: var(--spacing-8);
-		background: #fafafa;
+		background: #FDFDFD;
 		border-radius: 20px;
 		border: 1px solid #f1f5f9;
 		transition: all 0.3s ease;
@@ -868,46 +866,27 @@
 
 	/* CTA Section */
 	.cta-section {
+		background: #FDFDFD;
 		position: relative;
 		padding: var(--spacing-20) 0;
-		background: #0f172a;
+		/* background: linear-gradient(135deg, #065f46 0%, #047857 100%); */
 		overflow: hidden;
 	}
 
-	.cta-background {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: -1;
-	}
 
-	.cta-gradient {
-		width: 100%;
-		height: 100%;
-		background: #0f172a;
-		opacity: 1;
-	}
+
 
 	.cta-content {
 		text-align: center;
-		color: white !important;
+		/* color: white !important; */
 		position: relative;
 		z-index: 1;
 	}
 
-	.cta-content *,
-	.cta-content h1, .cta-content h2, .cta-content h3, .cta-content h4, .cta-content h5, .cta-content h6,
-	.cta-content p,
-	.cta-content span,
-	.cta-content div {
-		color: white !important;
-	}
 
 	.cta-content h2 {
 		font-size: clamp(2rem, 5vw, 3rem);
-		font-weight: 700;
+		font-weight: var(--font-weight-semibold);
 		margin-bottom: var(--spacing-6);
 		letter-spacing: -0.02em;
 		line-height: 1.3;
@@ -949,7 +928,7 @@
 
 	/* Footer */
 	.footer {
-		background: #1e293b;
+		background: #374151;
 		color: white !important;
 		padding: var(--spacing-16) 0 var(--spacing-8);
 	}
@@ -1011,20 +990,11 @@
 		font-weight: 400;
 	}
 
-	/* Responsive Design - Centered layout for all screens ≤1024px */
+	/* Responsive Design */
 	@media (max-width: 1024px) {
 		.hero .container {
-			grid-template-columns: 1fr;
-			gap: var(--spacing-12);
-			text-align: center;
-			justify-items: center;
 			padding-top: var(--spacing-16);
 			padding-bottom: var(--spacing-16);
-		}
-
-		/* Hide hero visual completely on all tablet and mobile */
-		.hero-visual {
-			display: none;
 		}
 
 		/* Add spacing above hero title for all tablet/mobile */
