@@ -9,27 +9,39 @@ export const load: PageServerLoad = async ({ locals }) => {
 		throw redirect(302, '/login');
 	}
 	
-	// Get user profile and notification preferences
+	// Get user profile and notification preferences - try users table first
 	const { data: profile, error } = await locals.supabase
 		.from('users')
-		.select('full_name, email, phone, notification_preferences')
+		.select('*')
 		.eq('id', user.id)
 		.single();
 	
-	if (error) {
-		console.error('Error fetching user profile:', error);
-	}
+	// Also try user_profiles table to see if data is there
+	const { data: userProfilesData, error: userProfilesError } = await locals.supabase
+		.from('user_profiles')
+		.select('*')
+		.eq('user_id', user.id)
+		.single();
 	
 	console.log('Settings page server load:', {
 		user_id: user.id,
-		profile,
-		error
+		users_table: {
+			data: profile,
+			error: error?.message
+		},
+		user_profiles_table: {
+			data: userProfilesData,
+			error: userProfilesError?.message
+		}
 	});
+	
+	// Use whichever table has the data
+	const finalProfile = profile || userProfilesData || null;
 	
 	return {
 		session,
 		user,
-		profile: profile || null
+		profile: finalProfile
 	};
 };
 
