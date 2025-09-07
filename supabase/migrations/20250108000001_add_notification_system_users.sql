@@ -66,12 +66,12 @@ CREATE OR REPLACE FUNCTION should_send_milestone_notification(
   milestone_number INTEGER
 ) RETURNS BOOLEAN AS $$
 DECLARE
-  notification_type TEXT;
+  milestone_type TEXT;
   already_sent BOOLEAN;
   user_preferences JSONB;
 BEGIN
   -- Determine notification type
-  notification_type := 'milestone_' || milestone_number;
+  milestone_type := 'milestone_' || milestone_number;
   
   -- Check user preferences from users table
   SELECT u.notification_preferences INTO user_preferences
@@ -87,7 +87,7 @@ BEGIN
   SELECT EXISTS(
     SELECT 1 FROM notification_logs nl
     WHERE nl.user_id = user_uuid 
-    AND nl.notification_type = notification_type
+    AND nl.notification_type = milestone_type
     AND nl.status IN ('sent', 'delivered')
   ) INTO already_sent;
   
@@ -105,9 +105,9 @@ CREATE OR REPLACE FUNCTION log_milestone_notification(
 ) RETURNS UUID AS $$
 DECLARE
   notification_id UUID;
-  notification_type TEXT;
+  milestone_type TEXT;
 BEGIN
-  notification_type := 'milestone_' || milestone_number;
+  milestone_type := 'milestone_' || milestone_number;
   
   INSERT INTO notification_logs (
     user_id,
@@ -118,7 +118,7 @@ BEGIN
     status
   ) VALUES (
     user_uuid,
-    notification_type,
+    milestone_type,
     notification_channel,
     response_count,
     notification_metadata,
