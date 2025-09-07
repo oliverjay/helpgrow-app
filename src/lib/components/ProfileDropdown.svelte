@@ -3,7 +3,7 @@
 	import { goto, invalidateAll } from '$app/navigation';
 	import Dropdown from './Dropdown.svelte';
 	import Button from './Button.svelte';
-	import { IconDashboard, IconLogout } from '$lib/icons';
+	import { IconDashboard, IconLogout, IconSettings } from '$lib/icons';
 	import { modal } from '$lib/stores/modal';
 
 	let { className = '' } = $props();
@@ -216,6 +216,20 @@
 				width="100%"
 			>
 				Dashboard
+			</Button>
+		</div>
+
+		<div class="dropdown-button">
+			<Button
+				href="/settings"
+				variant="ghost"
+				size="sm"
+				icon={IconSettings}
+				iconPosition="left"
+				onclick={closeDropdown}
+				width="100%"
+			>
+				Settings
 			</Button>
 		</div>
 
