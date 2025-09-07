@@ -87,8 +87,11 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 				const responseCount = responseData[0].total_responses;
 				console.log(`📈 User ${submission.inviteCode} now has ${responseCount} responses`);
 				
-				// Trigger milestone notification (fire and forget)
-				const notificationUrl = `${process.env.NODE_ENV === 'development' ? 'http://localhost:5173' : 'https://helpgrow.app'}/api/notifications/milestone`;
+				// Trigger milestone notification using absolute URL
+				console.log('📮 Triggering milestone notification...');
+				
+				const baseUrl = 'https://helpgrow.app';
+				const notificationUrl = `${baseUrl}/api/notifications/milestone`;
 				console.log('📮 Calling notification API:', notificationUrl);
 				
 				fetch(notificationUrl, {
@@ -98,6 +101,9 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 						userId: submission.inviteCode,
 						responseCount
 					})
+				}).then(async (response) => {
+					const result = await response.json();
+					console.log('✅ Milestone notification response:', result);
 				}).catch(error => {
 					console.error('❌ Failed to trigger milestone notification:', error);
 				});
