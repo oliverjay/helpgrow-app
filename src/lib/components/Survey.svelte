@@ -119,7 +119,7 @@
 	<!-- Survey Header -->
 	<div class="survey-header">
 		<!-- <h1 class="survey-title">Anonymous Survey about {inviterName}</h1> -->
-		<p class="survey-subtitle">Your honest feedback will help {inviterName}image.png understand how others see them</p>
+		<p class="survey-subtitle">Your honest feedback will help {inviterName} understand how others see them</p>
 	</div>
 
 	<!-- Progress Bar -->

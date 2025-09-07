@@ -71,6 +71,34 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 
 		console.log(`Successfully stored ${surveyRecords.length} survey responses with session ID: ${responseSessionId}`);
 
+		// Trigger milestone notifications asynchronously
+		try {
+			// Get current response count for the user
+			const { data: responseData, error: countError } = await supabaseAdmin
+				.rpc('get_user_response_count_with_details', { 
+					user_uuid: submission.inviteCode 
+				});
+
+			if (!countError && responseData?.[0]) {
+				const responseCount = responseData[0].total_responses;
+				
+				// Trigger milestone notification (fire and forget)
+				fetch('/api/notifications/milestone', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						userId: submission.inviteCode,
+						responseCount
+					})
+				}).catch(error => {
+					console.error('Failed to trigger milestone notification:', error);
+				});
+			}
+		} catch (error) {
+			console.error('Error triggering milestone notification:', error);
+			// Don't fail the survey submission if notification fails
+		}
+
 		return json({ 
 			success: true, 
 			message: 'Survey submitted successfully',
