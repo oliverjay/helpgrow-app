@@ -176,6 +176,12 @@ class ResendProvider implements NotificationProvider {
 	}
 	
 	async sendEmail(data: NotificationData) {
+		console.log('📧 Attempting to send email via Resend:', {
+			to: data.userEmail,
+			milestone: data.milestoneNumber,
+			apiKey: this.apiKey ? `${this.apiKey.substring(0, 8)}...` : 'Missing'
+		});
+		
 		const template = getEmailTemplate(data);
 		
 		try {
@@ -199,10 +205,16 @@ class ResendProvider implements NotificationProvider {
 			
 			if (!response.ok) {
 				const errorData = await response.json();
+				console.error('❌ Resend API error:', {
+					status: response.status,
+					statusText: response.statusText,
+					errorData
+				});
 				throw new Error(`Resend API error: ${errorData.message}`);
 			}
 			
 			const result = await response.json();
+			console.log('✅ Email sent successfully:', { messageId: result.id });
 			return { success: true, messageId: result.id };
 		} catch (error) {
 			console.error('Resend email error:', error);

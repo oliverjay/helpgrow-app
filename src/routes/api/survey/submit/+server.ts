@@ -73,17 +73,25 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 
 		// Trigger milestone notifications asynchronously
 		try {
+			console.log('🔔 Attempting to trigger milestone notifications...');
+			
 			// Get current response count for the user
 			const { data: responseData, error: countError } = await supabaseAdmin
 				.rpc('get_user_response_count_with_details', { 
 					user_uuid: submission.inviteCode 
 				});
 
+			console.log('📊 Response count data:', { responseData, countError });
+
 			if (!countError && responseData?.[0]) {
 				const responseCount = responseData[0].total_responses;
+				console.log(`📈 User ${submission.inviteCode} now has ${responseCount} responses`);
 				
 				// Trigger milestone notification (fire and forget)
-				fetch('/api/notifications/milestone', {
+				const notificationUrl = `${process.env.NODE_ENV === 'development' ? 'http://localhost:5173' : 'https://helpgrow.app'}/api/notifications/milestone`;
+				console.log('📮 Calling notification API:', notificationUrl);
+				
+				fetch(notificationUrl, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({
@@ -91,11 +99,13 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 						responseCount
 					})
 				}).catch(error => {
-					console.error('Failed to trigger milestone notification:', error);
+					console.error('❌ Failed to trigger milestone notification:', error);
 				});
+			} else {
+				console.log('⚠️ No response count data or error occurred:', { countError, responseData });
 			}
 		} catch (error) {
-			console.error('Error triggering milestone notification:', error);
+			console.error('❌ Error triggering milestone notification:', error);
 			// Don't fail the survey submission if notification fails
 		}
 

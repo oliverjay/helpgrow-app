@@ -21,10 +21,14 @@ const notificationService = new NotificationService(
 );
 
 export const POST: RequestHandler = async ({ request }) => {
+	console.log('🔔 Milestone notification API called');
+	
 	try {
 		const { userId, responseCount } = await request.json();
-
+		console.log('📨 Request data:', { userId, responseCount });
+		
 		if (!userId || typeof responseCount !== 'number') {
+			console.log('❌ Invalid request data:', { userId, responseCount });
 			return json({ error: 'Invalid request data' }, { status: 400 });
 		}
 
@@ -38,15 +42,25 @@ export const POST: RequestHandler = async ({ request }) => {
 			.single();
 
 		if (userError || !userProfile) {
-			console.error('Error fetching user profile:', userError);
+			console.error('❌ Error fetching user profile:', userError);
+			console.log('👤 User profile data:', userProfile);
 			return json({ error: 'User not found' }, { status: 404 });
 		}
+		
+		console.log('✅ User profile loaded:', {
+			full_name: userProfile.full_name,
+			email: userProfile.email,
+			notification_preferences: userProfile.notification_preferences,
+			phone: userProfile.phone ? '***' + userProfile.phone.slice(-4) : 'none'
+		});
 
 		// Determine which milestone notifications to send
 		const milestones: Array<1 | 2 | 3> = [];
 		if (responseCount >= 1) milestones.push(1);
 		if (responseCount >= 2) milestones.push(2);
 		if (responseCount >= 3) milestones.push(3);
+		
+		console.log('🎯 Checking milestones:', { responseCount, milestones });
 
 		const results: Array<{
 			milestone: number;
@@ -56,11 +70,14 @@ export const POST: RequestHandler = async ({ request }) => {
 		}> = [];
 
 		for (const milestone of milestones) {
+			console.log(`🔍 Processing milestone ${milestone}...`);
+			
 			// Check if we should send this milestone notification
 			const shouldSend = await shouldSendMilestoneNotification(userId, milestone);
+			console.log(`📋 Should send milestone ${milestone}:`, shouldSend);
 			
 			if (!shouldSend) {
-				console.log(`Milestone ${milestone} notification already sent for user ${userId}`);
+				console.log(`⏭️ Milestone ${milestone} notification already sent for user ${userId}`);
 				continue;
 			}
 
