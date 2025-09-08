@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Head } from '$lib/components';
+	import { Button, Head, FloatingAvatars } from '$lib/components';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import { onMount } from 'svelte';
 
@@ -27,6 +27,7 @@
 		<div class="gradient-orb orb-1"></div>
 		<div class="gradient-orb orb-2"></div>
 		<div class="gradient-orb orb-3"></div>
+		<FloatingAvatars />
 	</div>
 	
 	<div class="container">
@@ -37,12 +38,12 @@
 			</div>
 			
 			<h1 class="hero-title">
-				See Yourself Through 
-				<span class="gradient-text">Others' Eyes</span>
+				How do others
+				<span class="gradient-text">see you?</span>
 			</h1>
 			
 			<p class="hero-description">
-				Anonymous feedback from those who know you best—spot strengths, blind spots, and boost your impact.
+				Anonymous feedback from those who know you best — strengths, blind spots, and how to improve.
 			</p>
 			
 			<div class="time-promise">
@@ -54,7 +55,7 @@
 			
 			<div class="hero-actions">
 				<Button href="/login?mode=signup" variant="primary" size="xl">
-					Start Your Journey
+					Get Started
 				</Button>
 			</div>
 			
@@ -64,11 +65,11 @@
 					<div class="stat-label">Personality Dimensions</div>
 				</div>
 				<div class="stat-item">
-					<div class="stat-number">6</div>
-					<div class="stat-label">Core Categories</div>
+					<div class="stat-number">$0</div>
+					<div class="stat-label">Completely Free</div>
 				</div>
 				<div class="stat-item">
-					<div class="stat-number">95%</div>
+					<div class="stat-number">98%</div>
 					<div class="stat-label">Find It Helpful</div>
 				</div>
 			</div>
@@ -131,7 +132,7 @@
 </section>
 
 <!-- Categories Preview -->
-<section class="categories">
+<!-- <section class="categories">
 	<div class="container">
 		<div class="section-header">
 			<h2>6 Personality Categories</h2>
@@ -177,7 +178,7 @@
 		</div>
 
 	</div>
-</section>
+</section> -->
 
 <!-- Testimonials -->
 <section class="testimonials" class:visible={testimonialsVisible}>
@@ -238,12 +239,15 @@
 
 	<div class="container">
 		<div class="cta-content">
-		
-							<h2>Ready to Discover Your True Impact?</h2>
+
+			<img src="/family.webp" alt="Family" class="cta-image" />
+
+			<h2>Join HelpGrow Today</h2>
+			
 			<p>Join thousands who improved their relationships with us.</p>
 			<div class="cta-actions">
 				<Button href="/login?mode=signup" variant="primary" size="xl">
-					Get Started Free
+					Sign up Free
 				</Button>
 				<div class="cta-note">
 					<span>✓ Free to use</span>
@@ -632,6 +636,12 @@
 		padding-top: var(--spacing-8);
 	}
 
+	.cta-image {
+		width: 100%;
+		max-width: 400px;
+		/* margin-bottom: var(--spacing-8); */
+	}
+
 	.features-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -864,7 +874,8 @@
 
 	/* CTA Section */
 	.cta-section {
-		background: #ecf1ec;
+		background: #FDFDFD;
+
 		position: relative;
 		padding: var(--spacing-20) 0;
 		/* background: linear-gradient(135deg, #065f46 0%, #047857 100%); */

@@ -4,6 +4,7 @@ export { default as Button } from './Button.svelte';
 export { default as Card } from './Card.svelte';
 export { default as DarkModeToggle } from './DarkModeToggle.svelte';
 export { default as Dropdown } from './Dropdown.svelte';
+export { default as FloatingAvatars } from './FloatingAvatars.svelte';
 export { default as Head } from './Head.svelte';
 export { default as Modal } from './Modal.svelte';
 export { default as ModalDemoForm } from './ModalDemoForm.svelte';

@@ -86,7 +86,8 @@
 		padding: 0 1rem;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: center;
+		position: relative;
 		height: 3rem;
 		min-height: 3rem;
 	}
@@ -97,6 +98,14 @@
 		align-items: center;
 		flex-shrink: 0;
 		height: 100%;
+	}
+
+	/* Actions positioned absolutely to the right */
+	.navbar-actions {
+		position: absolute;
+		right: 1rem;
+		display: flex;
+		align-items: center;
 	}
 
 	.brand-link {
